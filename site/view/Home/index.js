@@ -9,6 +9,7 @@ class Home extends React.Component {
     super(props)
     this.storeLang()
 
+    // createRef()
     this.designText = React.createRef()
     this.designList = React.createRef()
     this.efficiencyText = React.createRef()
@@ -39,6 +40,7 @@ class Home extends React.Component {
 
   // 保存语言类型
   storeLang () {
+    // console.log(this.props)
     let locale = window.location.hash.split('/')[1]
     if (!locale || !(locale in locales)) {
       locale = window.localStorage.getItem('HIUI_LANGUAGE')
@@ -76,7 +78,6 @@ class Home extends React.Component {
 
   isElementInViewport (el, offset = 0) {
     const box = el.getBoundingClientRect()
-
     const top = (box.top >= 0)
     const bottom = (box.bottom <= (window.innerHeight || document.documentElement.clientHeight) + offset)
     return (top && bottom)
@@ -93,7 +94,7 @@ class Home extends React.Component {
   }
 
   render () {
-    const {designText, efficiencyText, excelText, excelList} = this.state
+    const {designText, designList, efficiencyText, excelText, excelList} = this.state
     const {
       locale
     } = this.props
@@ -162,7 +163,7 @@ class Home extends React.Component {
         <div className='section-excel'>
           <div className='container'>
             <div className={`text ${excelText ? 'trans' : ''}`} ref={this.excelText}>优秀到不能被忽视</div>
-            <div className={`item-list clearfix ${excelList ? 'trans' : ''}`} ref={this.excelList}>
+            <div className={`item-list clearfix ${excelText ? 'trans' : ''}`} ref={this.excelList}>
               <div className='item'>
                 <div className='pic' />
                 <div className='title'>实践出真知</div>
@@ -215,6 +216,9 @@ class Home extends React.Component {
   }
 }
 
-export default connect(state => ({
-  locale: state.global.locale
-}))(Home)
+export default connect(state => {
+  console.log(state)
+  return {
+    locale: state.global.locale
+  }
+})(Home)

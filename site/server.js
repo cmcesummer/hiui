@@ -15,6 +15,8 @@ const compiler = webpack(config)
 const server = new WebpackDevServer(compiler, {
   hot: true,
   noInfo: true,
+  // With devServer.quiet enabled, nothing except the initial startup information will be written to the console.
+  // This also means that errors or warnings from webpack are not visible.
   quiet: true,
   filename: config.output.filename,
   publicPath: config.output.publicPath,

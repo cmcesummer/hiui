@@ -26,6 +26,7 @@ class Component extends React.Component {
     const sider = {
       items: this.getSiderItems()
     }
+    console.log(sider)
     globalSider(sider)
 
     this.getCurrentPage(() => {
@@ -140,7 +141,6 @@ class Component extends React.Component {
 
     const documents = Object.keys(pages.documents).map(page => page)
     const footNavs = [].concat(...documents, ...components)
-
     this.setState({footNavs}, fn)
   }
 

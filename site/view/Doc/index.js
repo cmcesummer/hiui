@@ -86,7 +86,7 @@ class Doc extends Component {
     // }
 
     const doc = this.getCurrentDoc()
-
+    // Fragment 空标签
     return (
       <React.Fragment>
         <Logo
@@ -113,7 +113,7 @@ class Doc extends Component {
   render () {
     const { sider } = this.props
     const header = this.renderHeader()
-
+    console.log(this.props)
     return (
       <Dashboard
         header={header}
